@@ -33,7 +33,7 @@ export default function ConfidentialCredentialLayout() {
   const [presentAddress, setPresentAddress] = useState("");
   const [permanentAddress, setPermanentAddress] = useState("");
 
-//   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  //   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   //   useEffect(() => {
   //     if (isInitialLoad) {
@@ -248,7 +248,7 @@ export default function ConfidentialCredentialLayout() {
           marginTop: "30px",
         }}
       >
-        Ant Design ©2023 Created by Ant UED
+        TaxWizard ©2023 Created by IUT_ORCHESTRATORS
       </Footer>
     </>
   );

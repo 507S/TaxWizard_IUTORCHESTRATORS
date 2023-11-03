@@ -1,33 +1,42 @@
 {
-  "hash": "417abe9a",
-  "browserHash": "6f4f6f3c",
+  "hash": "44cffe05",
+  "browserHash": "16de6e9b",
   "optimized": {
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "2b45350c",
+      "fileHash": "a9c1c89d",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "a720d650",
+      "fileHash": "cffb1958",
       "needsInterop": true
     },
     "react-router-dom": {
       "src": "../../node_modules/react-router-dom/dist/index.js",
       "file": "react-router-dom.js",
-      "fileHash": "75f81335",
+      "fileHash": "d43e88e2",
       "needsInterop": false
     },
     "antd": {
       "src": "../../node_modules/antd/es/index.js",
       "file": "antd.js",
-      "fileHash": "81ad566a",
+      "fileHash": "eb03d37d",
+      "needsInterop": false
+    },
+    "antd-img-crop": {
+      "src": "../../node_modules/antd-img-crop/dist/antd-img-crop.esm.js",
+      "file": "antd-img-crop.js",
+      "fileHash": "649c4644",
       "needsInterop": false
     }
   },
   "chunks": {
+    "chunk-NGZFCNLJ": {
+      "file": "chunk-NGZFCNLJ.js"
+    },
     "chunk-MDIHFEFG": {
       "file": "chunk-MDIHFEFG.js"
     },
