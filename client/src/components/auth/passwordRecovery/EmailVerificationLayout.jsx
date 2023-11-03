@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import "../../../styles/AuthStyleForNormalCredentialLayout.css";
+import "../../../styles/AuthStyleForEmailVerificationLayout.css";
 
 export default function EmailVerificationLayout() {
   const [email, setEmail] = useState("");
@@ -11,17 +10,16 @@ export default function EmailVerificationLayout() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Email validation
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@dreamonline\.co\.jp$/;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
     if (!emailPattern.test(email)) {
-      setEmailError("Please provide your organization email");
+      setEmailError("Please provide valid email");
       return;
     } else {
       setEmailError("");
     }
 
     // Password validation
-   
 
     // if (emailError === "" && passwordError === "") {
     //   var encryptedPassword = CryptoJS.AES.encrypt(
@@ -83,15 +81,12 @@ export default function EmailVerificationLayout() {
     setEmailError("");
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    setPasswordError("");
-  };
+
 
   return (
     <div className="container-fluid">
       <div className="row no-gutter">
-        <div className="col-md-6 d-none d-md-flex bg-image-normal-credential"></div>
+        <div className="col-md-6 d-none d-md-flex bg-image-password-recovery"></div>
 
         <div className="col-md-6 bg-light">
           <div className="login d-flex align-items-center py-4">
@@ -115,21 +110,24 @@ export default function EmailVerificationLayout() {
                         onChange={handleEmailChange}
                       />
                       {emailError && (
-                        <p className="text-danger m-1">{emailError}</p>
+                        <p
+                          className="text-danger m-1"
+                          style={{ fontSize: "12px" }}
+                        >
+                          {emailError}
+                        </p>
                       )}
                     </div>
-                 
-                    
+
                     <div>
                       <button
                         type="submit"
                         className="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm w-100"
                       >
                         Send Code &nbsp;
-                        <i className="fa-solid fa-lock"></i>
+                        <i className="fa fa-paper-plane" aria-hidden="true"></i>
                       </button>
                     </div>
-                   
                   </form>
                 </div>
               </div>

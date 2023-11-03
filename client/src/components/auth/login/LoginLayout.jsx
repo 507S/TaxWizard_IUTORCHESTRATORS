@@ -12,25 +12,27 @@ export default function LoginLayout() {
     e.preventDefault();
 
     // Email validation
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@dreamonline\.co\.jp$/;
-    if (!emailPattern.test(email)) {
-      setEmailError("Please provide your organization email");
-      return;
-    } else {
-      setEmailError("");
-    }
+   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+   if (!emailPattern.test(email)) {
+     setEmailError("Please provide valid email");
+     return;
+   } else {
+     setEmailError("");
+   }
+
 
     // Password validation
-    const passwordPattern = /^(?=.*[A-Z])(?=.*[0-9]).{6,15}$/;
+   const passwordPattern = /^(?=.*[A-Z])(?=.*[0-9]).{6,15}$/;
 
-    if (!passwordPattern.test(password)) {
-      setPasswordError(
-        "Password must contain at least 6 characters, including at least one uppercase letter and one numeric digit, and must not exceed 15 characters"
-      );
-      return;
-    } else {
-      setPasswordError("");
-    }
+   if (!passwordPattern.test(password)) {
+     setPasswordError(
+       "Password must contain at least 6 characters, including at least one uppercase letter and one numeric digit, and must not exceed 15 characters"
+     );
+     return;
+   } else {
+     setPasswordError("");
+   }
 
     // if (emailError === "" && passwordError === "") {
     //   var encryptedPassword = CryptoJS.AES.encrypt(
@@ -124,7 +126,12 @@ export default function LoginLayout() {
                         onChange={handleEmailChange}
                       />
                       {emailError && (
-                        <p className="text-danger m-1">{emailError}</p>
+                        <p
+                          className="text-danger m-1"
+                          style={{ fontSize: "12px" }}
+                        >
+                          {emailError}
+                        </p>
                       )}
                     </div>
                     <div className="form-group mb-3">

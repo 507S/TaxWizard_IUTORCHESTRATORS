@@ -6,8 +6,8 @@ import NormalCredentialPage from "./pages/register/NormalCredentialPage";
 import VerifyOTPPage from "./pages/register/VerifyOTPPage";
 import LoginPage from "./pages/login/LoginPage";
 import EmailVerificationPage from "./pages/passwordRecovery/EmailVerificationPage";
-import PasswordRecoveryResponsePage from "./pages/notification/PasswordRecoveryResponsePage";
-import PasswordRecoveryEmailNotFoundPage from "./pages/error/PasswordRecoveryEmailNotFoundPage";
+import PasswordRecoveryResponsePage from "./pages/passwordRecovery/PasswordRecoveryResponsePage";
+import PasswordRecoveryEmailNotFoundPage from "./pages/passwordRecovery/PasswordRecoveryEmailNotFoundPage";
 
 function App() {
   return (

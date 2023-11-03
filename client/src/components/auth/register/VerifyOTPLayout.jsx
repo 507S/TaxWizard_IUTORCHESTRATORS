@@ -5,6 +5,7 @@ import "../../../styles/AuthStyleForOTPVerificationLayout.css";
 export default function VerifyOTPLayout() {
   const [otp, setOtp] = useState(["", "", "", "", ""]);
   const otpInputs = useRef([]);
+  const [error, setError] = useState("");
 
   const handleOtpChange = (e, index) => {
     const { value } = e.target;
@@ -24,9 +25,15 @@ export default function VerifyOTPLayout() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const enteredOtp = otp.join("");
-    // Validate and process the OTP as needed
-    console.log("Entered OTP:", enteredOtp);
+    // Check if all OTP fields are filled
+    if (otp.every((digit) => digit !== "")) {
+      const enteredOtp = otp.join("");
+      // Validate and process the OTP as needed
+      console.log("Entered OTP:", enteredOtp);
+      setError(""); // Clear any previous error
+    } else {
+      setError("Please fill in all OTP fields.");
+    }
   };
 
   return (
@@ -55,26 +62,42 @@ export default function VerifyOTPLayout() {
                         />
                       ))}
                     </div>
+                    {error && (
+                      <p
+                        className="text-danger mb-2"
+                        style={{ fontSize: "13px" }}
+                      >
+                        {error}
+                      </p>
+                    )}
                     <div>
                       <button
                         type="submit"
                         className="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm w-100"
                       >
                         Verify &nbsp;
-                        <i className="fa-solid fa-lock"></i>
+                        <i className="fa-solid fa-check"></i>
                       </button>
                     </div>
-                    <div
+                    <NavLink to="/login">
+                      <div>
+                        <button className="btn btn-dark btn-block text-uppercase mb-2 rounded-pill shadow-sm w-100">
+                          Go Back &nbsp;
+                          <i className="fa fa-arrow-left" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </NavLink>
+                    {/* <div
                       className="text-center d-flex justify-content-between mt-3"
                       style={{ textAlign: "center" }}
                     >
                       <p>
-                        Already have an account?
+                        Go Back?
                         <NavLink to="/login" className="font-italic text-muted">
                           <u>&nbsp;Login</u>
                         </NavLink>
                       </p>
-                    </div>
+                    </div> */}
                   </form>
                 </div>
               </div>

@@ -3,18 +3,25 @@ import { NavLink } from "react-router-dom";
 import "../../../styles/AuthStyleForNormalCredentialLayout.css";
 
 export default function NormalCredentialLayout() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [genderError, setGenderError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Email validation
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@dreamonline\.co\.jp$/;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
     if (!emailPattern.test(email)) {
-      setEmailError("Please provide your organization email");
+      setEmailError("Please provide valid email");
       return;
     } else {
       setEmailError("");
@@ -30,6 +37,27 @@ export default function NormalCredentialLayout() {
       return;
     } else {
       setPasswordError("");
+    }
+
+    if (name.trim() === "") {
+      setNameError("Name is required");
+      return;
+    } else {
+      setNameError("");
+    }
+
+    if (gender === "") {
+      setGenderError("Please select your gender");
+      return;
+    } else {
+      setGenderError("");
+    }
+
+    if (password !== confirmPassword) {
+      setConfirmPasswordError("Passwords do not match");
+      return;
+    } else {
+      setConfirmPasswordError("");
     }
 
     // if (emailError === "" && passwordError === "") {
@@ -87,9 +115,19 @@ export default function NormalCredentialLayout() {
     // }
   };
 
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+    setNameError("");
+  };
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     setEmailError("");
+  };
+
+  const handleGenderChange = (e) => {
+    setGender(e.target.value);
+    setGenderError("");
   };
 
   const handlePasswordChange = (e) => {
@@ -97,21 +135,46 @@ export default function NormalCredentialLayout() {
     setPasswordError("");
   };
 
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+    setConfirmPasswordError("");
+  };
+
   return (
     <div className="container-fluid">
       <div className="row no-gutter">
-        <div className="col-md-8 d-none d-md-flex bg-image-normal-credential"></div>
+        <div className="col-md-7 d-none d-md-flex bg-image-normal-credential"></div>
 
-        <div className="col-md-4 bg-light">
+        <div className="col-md-5 bg-light">
           <div className="login d-flex align-items-center py-4">
             <div className="container">
               <div className="row">
                 <div className="col-lg-10 col-xl-7 mx-auto">
-                  <h3 className="display-4">Register</h3>
+                  <h3 className="display-5">Create Account</h3>
                   <p className="text-muted mb-4">
                     {/* Create a login split page using Bootstrap 4. */}
                   </p>
                   <form onSubmit={handleSubmit}>
+                    <div className="form-group mb-3">
+                      <input
+                        id="inputEmail"
+                        type="text"
+                        placeholder="Name"
+                        required=""
+                        autoFocus=""
+                        className="form-control rounded-pill border-1 shadow-sm px-4 py-2"
+                        value={name}
+                        onChange={handleNameChange}
+                      />
+                      {nameError && (
+                        <p
+                          className="text-danger m-1"
+                          style={{ fontSize: "12px" }}
+                        >
+                          {nameError}
+                        </p>
+                      )}
+                    </div>
                     <div className="form-group mb-3">
                       <input
                         id="inputEmail"
@@ -124,9 +187,38 @@ export default function NormalCredentialLayout() {
                         onChange={handleEmailChange}
                       />
                       {emailError && (
-                        <p className="text-danger m-1">{emailError}</p>
+                        <p
+                          className="text-danger m-1"
+                          style={{ fontSize: "12px" }}
+                        >
+                          {emailError}
+                        </p>
                       )}
                     </div>
+                    <div className="form-group mb-3">
+                      <select
+                        id="inputGender"
+                        required=""
+                        className={`form-control rounded-pill border-1 shadow-sm px-4 py-2 ${
+                          genderError ? "is-invalid" : ""
+                        }`}
+                        value={gender}
+                        onChange={handleGenderChange}
+                      >
+                        <option value="">Select your gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </select>
+                      {genderError && (
+                        <p
+                          className="text-danger m-1"
+                          style={{ fontSize: "12px" }}
+                        >
+                          {genderError}
+                        </p>
+                      )}
+                    </div>
+
                     <div className="form-group mb-3">
                       <input
                         id="inputPassword"
@@ -146,27 +238,33 @@ export default function NormalCredentialLayout() {
                         </p>
                       )}
                     </div>
-                    {/* <div className="custom-control custom-checkbox mb-3">
+                    <div className="form-group mb-3">
                       <input
-                        id="customCheck1"
-                        type="checkbox"
-                        checked
-                        className="custom-control-input"
+                        id="inputPassword"
+                        type="password"
+                        placeholder="Retype Password"
+                        required=""
+                        className="form-control rounded-pill border-1 shadow-sm px-4 py-2"
+                        value={confirmPassword}
+                        onChange={handleConfirmPasswordChange}
                       />
-                      <label
-                        htmlFor="customCheck1"
-                        className="custom-control-label"
-                      >
-                        &nbsp;Remember password
-                      </label>
-                    </div> */}
+                      {confirmPasswordError && (
+                        <p
+                          className="text-danger m-1"
+                          style={{ fontSize: "12px" }}
+                        >
+                          {confirmPasswordError}
+                        </p>
+                      )}
+                    </div>
+
                     <div>
                       <button
                         type="submit"
                         className="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm w-100"
                       >
-                        Register &nbsp;
-                        <i className="fa-solid fa-lock"></i>
+                        Save &nbsp;
+                        <i className="fa-solid fa-key"></i>
                       </button>
                     </div>
                     <div

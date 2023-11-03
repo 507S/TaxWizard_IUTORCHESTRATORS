@@ -5,7 +5,8 @@ export default function PasswordRecoveryEmailNotFoundLayout() {
   return (
     <Result
       status="warning"
-      title="There are some problems with your operation."
+      title="Email Not Found."
+      subTitle="Sorry, We didn't found any registered email with this provided data. Please make sure you have provided the right email."
       extra={
         <NavLink to="/login">
           <Button type="primary" key="console">
