@@ -32,7 +32,9 @@ export default function LoginLayout() {
      return;
    } else {
      setPasswordError("");
-   }
+    }
+
+   
 
     // if (emailError === "" && passwordError === "") {
     //   var encryptedPassword = CryptoJS.AES.encrypt(

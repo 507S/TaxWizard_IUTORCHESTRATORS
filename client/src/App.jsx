@@ -8,6 +8,8 @@ import LoginPage from "./pages/login/LoginPage";
 import EmailVerificationPage from "./pages/passwordRecovery/EmailVerificationPage";
 import PasswordRecoveryResponsePage from "./pages/passwordRecovery/PasswordRecoveryResponsePage";
 import PasswordRecoveryEmailNotFoundPage from "./pages/passwordRecovery/PasswordRecoveryEmailNotFoundPage";
+import DashboardLayout from "./components/dashboard/DashboardLayout";
+import DashboardPage from "./pages/dashboard/DashboardPage";
 
 function App() {
   return (
@@ -33,6 +35,10 @@ function App() {
           <Route
             path="/password-recovery-failed"
             element={<PasswordRecoveryEmailNotFoundPage />}
+          />
+          <Route
+            path="/dashboard"
+            element={<DashboardPage />}
           />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

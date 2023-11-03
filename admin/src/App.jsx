@@ -3,6 +3,7 @@ import PageNotFound from "./pages/error/PageNotFound";
 
 import HomeLayout from "./components/HomeLayout";
 import LoginPage from "./pages/auth/login/LoginPage";
+import AdminDashboardPage from "./pages/dashboard/AdminDashboardPage";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeLayout />} />
           <Route path="/admin-login" element={<LoginPage />} />
+          <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>
