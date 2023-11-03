@@ -1,0 +1,10 @@
+.login,
+.image {
+  min-height: 95vh;
+}
+
+.bg-image-password-recovery {
+  background-image: url('../assets/passwordRecovery.jpg');
+  background-size: cover;
+  background-position: center center;
+}
