@@ -1,0 +1,10 @@
+.login,
+.image {
+  min-height: 100vh;
+}
+
+.bg-image-otp-verification {
+  background-image: url("../assets/enterOTPImage.jpg");
+  background-size: cover;
+  background-position: center center;
+}
