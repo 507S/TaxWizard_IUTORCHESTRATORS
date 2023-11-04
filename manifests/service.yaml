@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: orchestrator-frontend
+  namespace: namespace-workflow-1699064653509
+spec:
+  type: LoadBalancer
+  selector:
+    app: orchestrator-frontend
+  ports:
+    - protocol: TCP
+      port: 5173
+      targetPort: 5173

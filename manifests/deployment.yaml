@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orchestrator-frontend
+  labels:
+    app: orchestrator-frontend
+  namespace: namespace-workflow-1699064653509
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orchestrator-frontend
+  template:
+    metadata:
+      labels:
+        app: orchestrator-frontend
+    spec:
+      containers:
+        - name: orchestrator-frontend
+          image: secretregistry.azurecr.io/image-workflow-1699064653509:latest
+          ports:
+            - containerPort: 5173
