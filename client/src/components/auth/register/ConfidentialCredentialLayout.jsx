@@ -21,6 +21,7 @@ import ImgCrop from "antd-img-crop";
 
 import { Layout, Upload } from "antd";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 const { Footer } = Layout;
 export default function ConfidentialCredentialLayout() {
   const [dob, setDob] = useState("");

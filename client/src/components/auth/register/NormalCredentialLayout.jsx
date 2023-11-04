@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../../../styles/AuthStyleForNormalCredentialLayout.css";
+import axios from "axios";
 
 export default function NormalCredentialLayout() {
   const [name, setName] = useState("");
@@ -13,7 +14,8 @@ export default function NormalCredentialLayout() {
   const [genderError, setGenderError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
-
+  const navigate = useNavigate();
+ const base_url = process.env.REACT_APP_BASE_URL;
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -60,59 +62,59 @@ export default function NormalCredentialLayout() {
       setConfirmPasswordError("");
     }
 
-    // if (emailError === "" && passwordError === "") {
-    //   var encryptedPassword = CryptoJS.AES.encrypt(
-    //     JSON.stringify(password),
-    //     my_secret_key
-    //   ).toString();
+    if (emailError === "" && passwordError === "" && passwordError === "") {
+      // var encryptedPassword = CryptoJS.AES.encrypt(
+      //   JSON.stringify(password),
+      //   my_secret_key
+      // ).toString();
 
-    //   // updateRememberedCredentials(email, password);
-    //   updateRememberedCredentials(email, encryptedPassword);
+      // // updateRememberedCredentials(email, password);
+      // updateRememberedCredentials(email, encryptedPassword);
 
-    //   axios
-    //     .post(`${base_url}/api/v1/client/auth/login`, {
-    //       email,
-    //       password: encryptedPassword,
-    //     })
-    //     .then((response) => {
-    //       const { token, data, code, message } = response.data;
-    //       const clientInfo = {
-    //         auth: true,
-    //       };
+      axios
+        .post(`${base_url}/api/v1/client/auth/login`, {
+          email,
+          password: encryptedPassword,
+        })
+        .then((response) => {
+          const { token, data, code, message } = response.data;
+          const clientInfo = {
+            auth: true,
+          };
 
-    //       sessionStorage.setItem("clientInfo", JSON.stringify(clientInfo));
+          sessionStorage.setItem("clientInfo", JSON.stringify(clientInfo));
 
-    //       // Store the token and data in session storage
-    //       sessionStorage.setItem("accessToken", token);
-    //       sessionStorage.setItem("userData", JSON.stringify(data.user_id));
+          // Store the token and data in session storage
+          sessionStorage.setItem("accessToken", token);
+          sessionStorage.setItem("userData", JSON.stringify(data.user_id));
 
-    //       // Redirect to the home page or any other protected route
-    //       const passwordRecovered = sessionStorage.getItem("passwordRecovered");
+          // Redirect to the home page or any other protected route
+          const passwordRecovered = sessionStorage.getItem("passwordRecovered");
 
-    //       // If passwordRecovered is "yes", navigate to "/client-password", else navigate to "/home"
-    //       if (passwordRecovered === "yes") {
-    //         navigate("/reset-password");
-    //         // Clear the value of passwordRecovered from sessionStorage since it's not needed anymore
-    //         sessionStorage.removeItem("passwordRecovered");
-    //       } else {
-    //         navigate("/home");
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       if (error.response.status === 401) {
-    //         setModalVisible(true);
-    //         setModalMessage("User Doesn't Exist");
-    //       } else if (error.response.status === 400) {
-    //         setModalVisible(true);
-    //         setModalMessage("Wrong Email and Password Combination");
-    //       } else if (error.response.status === 403) {
-    //         setModalVisible(true);
-    //         setModalMessage("Account Verification ");
-    //       } else {
-    //         console.error("Login failed:", error.response.data.error);
-    //       }
-    //     });
-    // }
+          // If passwordRecovered is "yes", navigate to "/client-password", else navigate to "/home"
+          if (passwordRecovered === "yes") {
+            navigate("/reset-password");
+            // Clear the value of passwordRecovered from sessionStorage since it's not needed anymore
+            sessionStorage.removeItem("passwordRecovered");
+          } else {
+            navigate("/home");
+          }
+        })
+        .catch((error) => {
+          if (error.response.status === 401) {
+            setModalVisible(true);
+            setModalMessage("User Doesn't Exist");
+          } else if (error.response.status === 400) {
+            setModalVisible(true);
+            setModalMessage("Wrong Email and Password Combination");
+          } else if (error.response.status === 403) {
+            setModalVisible(true);
+            setModalMessage("Account Verification ");
+          } else {
+            console.error("Login failed:", error.response.data.error);
+          }
+        });
+    }
   };
 
   const handleNameChange = (e) => {

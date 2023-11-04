@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import "../../../styles/AuthStyleForOTPVerificationLayout.css";
+import axios from "axios";
 
 export default function VerifyOTPLayout() {
   const [otp, setOtp] = useState(["", "", "", "", ""]);

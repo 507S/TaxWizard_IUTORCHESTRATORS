@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../../../styles/AuthStyleForLoginLayout.css";
-
+import axios from "axios";
 export default function LoginLayout() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
